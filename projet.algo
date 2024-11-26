@@ -1,0 +1,39 @@
+Debut
+    // Declaration des variables
+    phrase : Chaine           // Stocke la phrase entree par l'utilisateur
+    longueur, mots, voyelles : Entier <- 0  // Compteurs initialises  
+    dans_un_mot : Booleen <- FAUX           // Indique si on est dans un mot
+
+    // Lecture de la phrase
+    Afficher "Entrez une phrase (se terminant par un point) : "
+
+    Lire phrase
+
+    // Parcourir chaque caractere de la phrase
+    Pour chaque caractere c dans phrase FAIRE
+        longueur <- longueur + 1   // Compter chaque caractere
+
+        // Verifier si le caractere est une voyelle
+        Si c est dans ['a', 'e', 'i', 'o', 'u', 'y', 'A', 'E', 'I', 'O', 'U', 'Y'] Alors
+            voyelles <- voyelles + 1
+
+        // Gerer les espaces et les mots
+        Si c = ' ' Alors
+            Si dans_un_mot = VRAI Alors
+                mots <- mots + 1
+                dans_un_mot <- FAUX     // On est sorti d'un mot
+        Sinon Si c = '.' Alors
+            Si dans_un_mot = VRAI Alors
+                mots <- mots + 1        // Compter le dernier mot avant le point
+            Fin Si
+            Quitter la boucle           // Arreter le traitement au point
+        Sinon
+            dans_un_mot <- VRAI         // On est dans un mot
+        Fin Si
+    Fin Pour
+
+    // Affichage des resultats
+    Afficher "Longueur de la phrase : ", longueur
+    Afficher "Nombre de mots : ", mots
+    Afficher "Nombre de voyelles : ", voyelles
+Fin
